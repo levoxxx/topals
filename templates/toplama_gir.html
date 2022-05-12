@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Toplama Ekle
+{% endblock title %}    
+
+{% block body %}
+    <div class= "container">
+    {% from "includes/_formhelpers.html" import render_field %}
+
+    <h4>Toplama Sayfası</h4>
+    <hr>
+
+    <form method = "post">
+        {{ render_field(form.miktar,class = "form-control") }}
+        {{ render_field(form.kimden,class = "form-control") }}
+        {{ render_field(form.session,class = "form-control") }}
+        {{ render_field(form.info,class = "form-control") }}
+        <button type="submit" class="btn btn-secondary">Ekle</button>
+    </form>
+
+
+{% endblock body %}
+

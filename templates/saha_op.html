@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Saha Operatörleri
+{% endblock title %}    Saha Operatörleri
+
+{% block body %}
+    <div>
+        <h5>Saha Operatörleri</h5>
+        <a href="/saha_op_ekle"><button type="button" class="btn btn-secondary">Saha Operatörü Ekle</button></a>
+        <a href="/grup" class = "btn btn-secondary">Gruplar</a>
+    </div>
+    <hr>
+{% if data %}
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th scope="col">İd</th>
+      <th scope="col">Kullanıcı</th>
+      <th scope="col">Grup</th>
+      <th scope="col">Yetki</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in data[::-1] %}
+    <tr>
+      <th scope="row">{{i.id}}</th>
+      <td>{{i.kullanıci_adi}}</td>
+      <td>{{i.grup}}</td>
+      <td>{{i.yetki}}</td>
+      <td><a href="/saha_op/edit/{{i.id}}" class="btn btn-secondary btn-sm">Güncelle</a></td>
+      <td><a href="/saha_op/delete/{{i.id}}" class="btn btn-secondary btn-sm">Sil</a></td>
+    </tr>   
+    {% endfor %}
+  </tbody>
+</table>           
+{% else %} 
+<div class = "alert alert-danger">Herhangi Bir Kullanıcı Yok...</div>
+{% endif %}
+
+{% endblock body %}

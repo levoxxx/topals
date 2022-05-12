@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Kullanıcı Ekle
+{% endblock title %}    
+
+{% block body %}
+{% from "includes/_formhelpers.html" import render_field %}
+
+    <h3>Yeni Kullanıcı</h3>
+    <hr>
+    <form method = "post">
+        {{ render_field(form.username,class = "form-control") }}
+        <label for="top" style = "font-weight:bold">Grup :</label>
+        <select class = "form-control" name="grup" id="grup">
+            {% for i in result %}
+            <option value="{{i.grup}}">{{i.grup}}</option>
+            {% endfor %}  
+        </select>            
+        <label for="top" style = "font-weight:bold">Yetki :</label>
+        <select class = "form-control" name="yetki" id="yetki">
+            {% for i in result2 %}
+            <option value="{{i.yetki}}">{{i.yetki}}</option>
+            {% endfor %}  
+        </select>            
+        {{ render_field(form.password,class = "form-control") }}        
+        <button type="submit" class="btn btn-secondary">Ekle</button>
+    </form>
+
+{% endblock body %} 

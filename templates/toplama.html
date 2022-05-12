@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Toplama
+{% endblock title %}
+
+{% block body %}
+
+
+
+    <div class = "container">
+        <h5>Toplama</h5> 
+        <a href="/toplama_gir" class = "btn btn-secondary">Toplama Ekle</a>
+        <form action="/toplama" method = "POST" class="mt-2">
+            <table style = "float: right;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <button type = "submit" class = "btn btn-secondary btn-sm" style = "float: right;">Ara</button>
+                        </td>
+                        <td>
+                            <input type="text" id ="ara" class = "input-sm" name = "keyword" maxlenght="10" placeholder = "Toplamacı Adı ile Ara.." style = "float: right;">
+                        </td>
+                        <td style = "margin: 3px;">
+                            {{ render_field(form.date,style = "float: right;") }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>    
+        </form>
+    </div>
+<br><br><br>
+<hr>
+
+
+    
+{% if data %}
+<table class="table table-hover table-sm">
+  <thead>
+    <tr>
+      <th scope="col">İd</th>
+      <th scope="col">Miktar</th>
+      <th scope="col">Veren</th>
+      <th scope="col">Alan</th>
+      <th scope="col">Tarih</th>
+      <th scope="col">Açıklama</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in data[::-1] %}
+    {% if i.miktar < 0 %}
+    <tr style="color:red;">
+      <th scope="row">{{i.id}}</th>
+      <td width="15%">{{i.miktar}}</td>
+      <td width="15%">{{i.veren}}</td>
+      <td>{{i.alan}}</td>
+      <td>{{i.tarih}}</td>
+      <td>{{i.info}}</td>
+      <td><a href="/toplama/edit/{{i.id}}" class="btn btn-secondary btn-sm">Güncelle</a></td>
+      <td><a href="/toplama/delete/{{i.id}}" class="btn btn-secondary btn-sm">Sil</a></td>
+    </tr>
+    {% else %}
+    <tr>
+      <th scope="row">{{i.id}}</th>
+      <td width="15%">{{i.miktar}}</td>
+      <td width="15%">{{i.veren}}</td>
+      <td>{{i.alan}}</td>
+      <td>{{i.tarih}}</td>
+      <td>{{i.info}}</td>
+      <td><a href="/toplama/edit/{{i.id}}" class="btn btn-secondary btn-sm">Güncelle</a></td>
+      <td><a href="/toplama/delete/{{i.id}}" class="btn btn-secondary btn-sm">Sil</a></td>
+    </tr>   
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>           
+{% else %}
+<div class = "alert alert-danger">Herhangi Bir Toplama Yok...</div>
+{% endif %}
+
+{% endblock body %}

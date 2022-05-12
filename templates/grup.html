@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Grup
+{% endblock title %}
+
+{% block body %}
+
+    <form method = "post">
+        {{ render_field(form.grup,class = "form-control") }}
+        <button type="submit" class="btn btn-secondary">Ekle</button>
+    </form>        
+    
+    {% if gruplar %}
+    <table class="table table-hover table-sm">
+     <thead>
+      <tr>
+       <th scope="col">İd</th>
+       <th scope="col">Grup</th>
+      </tr>
+     </thead>
+    <tbody>
+    {% for i in gruplar %}
+     <tr>
+      <th scope="row">{{i.id}}</th>
+      <td>{{i.grup}}</td>
+     </tr>   
+    {% endfor %}
+    </tbody>
+    </table>           
+    {% else %}
+    <div class = "alert alert-danger">Herhangi Bir Grup Yok...</div>
+    {% endif %}
+
+
+{% endblock body %}

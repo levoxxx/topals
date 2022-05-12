@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    deneme seleckt
+{% endblock title %}
+
+{% block body %}
+{% from "includes/_formhelpers.html" import render_field %}
+<form method = "POST">
+<div class = "form-group">
+    <label for="miktar">MİKTAR</label>
+    <input type="text" class = "input" name = "miktar" id = "miktar">
+    <label for="top">Cepci</label>
+    <select class = "form-control" name="cepci" id="cepci">
+        {% for row in cepci %}
+        <option value="{{row.id}}">{{row.kullanıci_adi}}</option>
+        {% endfor %}  
+    </select>
+    <button type = "submit" class = "btn btn-secondary btn-sm" style = "float: right;">Ekle</button>
+</div>
+
+<form method = "post">
+    {{ render_field(form.date) }}
+    <button type="submit" class="btn btn-secondary">Ekle</button>
+</form>
+
+
+
+</form>
+{% endblock body %} 

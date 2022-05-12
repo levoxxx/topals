@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Kullanıcı Güncelle
+{% endblock title %}    
+
+{% block body %}
+{% from "includes/_formhelpers.html" import render_field %}
+
+    <h4>Operaötr Güncelle</h4>
+    <hr>
+    <p>Güncellenecek Operatör = {{username}}</p>
+    <form method = "post">
+        
+        {{ render_field(form.grup,class = "form-control") }}
+        {{ render_field(form.yetki,class = "form-control") }}
+        {{ render_field(form.password,class = "form-control") }}
+        <button type="submit" class="btn btn-secondary">Güncelle</button>
+    </form>
+
+{% endblock body %} 
